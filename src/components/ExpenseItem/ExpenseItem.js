@@ -1,6 +1,14 @@
-const expenseItem = () =>{
+import './ExpenseItem.css';
+
+const expenseItem = (props) =>{
     return(
-        <h3>ExpenseItem</h3>
+        <div className="expense-item">            
+            <div>{props.date}</div>            
+            <div className="expense-item__description">
+                <h2>{props.title}</h2>
+                <div className="expense-item__price">${props.amount}</div>
+            </div>
+        </div>        
     )
 };
 
