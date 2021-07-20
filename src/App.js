@@ -26,11 +26,13 @@ function App() {
     },
   ];
 
+  const valueChanged = (event)=>{
+    console.log('App.js', event);
+  }
 
-
-  return (
+  return (    
     <div>     
-      <NewExpense></NewExpense>
+      <NewExpense onValueChanged={valueChanged}></NewExpense>
       <Expenses list={expenses}></Expenses>
     </div>
   );
