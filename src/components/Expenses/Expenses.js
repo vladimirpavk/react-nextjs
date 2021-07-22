@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './Expenses.css';
 
@@ -6,35 +6,25 @@ import ExpenseItem from '../ExpenseItem/ExpenseItem.js';
 import ExpenseFilter from '../ExpenseFilter/ExpenseFilter.js';
 
 const Expenses = (props)=>{
-
-    const [expenseFilter, setExpenseFilter] = useState('2020');
+    
     const [expenseList, setExpenseList] = useState(props.list);
+    const [filteredList, setFilteredList] = useState([]);
+    const [expenseFilter, setExpenseFilter] = useState('2022');
 
-    const filterChanged = (eventData)=>{
-        console.log(eventData);
-        setExpenseFilter(eventData);
-   /*      console.log(eventData);
-        setExpenseFilter(eventData);
-        
-        const filteredList = expenseList.filter(
-            (element)=>element.year === expenseFilter
-        );
-        
-        setExpenseList(filteredList);
-        
-        console.log(filteredList); */
-
-        const filteredList = expenseList.filter(
-            (element)=>{             
-                console.log('element', element.date.getFullYear(), 'expenseFilter', eventData);
-                console.log(element.date.getFullYear().toString() === expenseFilter.toString());
+    useEffect(()=>{
+        const templateList = expenseList.filter(
+            (element)=>{
                 return element.date.getFullYear().toString() === expenseFilter.toString();
             }
         );
-        console.log(filteredList);
+        setFilteredList(templateList);
+    }, [expenseFilter]);
+
+    const filterChanged = (eventData)=>{        
+        setExpenseFilter(eventData);          
     }
 
-    const expensesList = props.list.map( 
+    const expensesList = filteredList.map( 
         (expense, index)=>{
             return(
                 <ExpenseItem          
@@ -49,7 +39,9 @@ const Expenses = (props)=>{
     return(
         <div className="expenses">
             <ExpenseFilter onFilterChanged={filterChanged}/>
-            {expensesList};
+            {
+                expensesList.length === 0 ? <p>No expenses found.</p> : expensesList
+            }            
         </div>
     );
 }
