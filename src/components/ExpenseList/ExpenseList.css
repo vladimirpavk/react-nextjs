@@ -1,0 +1,13 @@
+.no_data {
+    color: #3a3a3a;
+    font-size: 2rem;
+    flex: 1;
+    margin: 0 1rem;
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+
+.expensesList {
+    background-color: red;
+}

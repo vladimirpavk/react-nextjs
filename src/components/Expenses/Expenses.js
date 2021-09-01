@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import './Expenses.css';
 
-import ExpenseItem from '../ExpenseItem/ExpenseItem.js';
+import ExpenseList from '../ExpenseList/ExpenseList.js';
 import ExpenseFilter from '../ExpenseFilter/ExpenseFilter.js';
 
 const Expenses = (props)=>{
@@ -24,24 +24,12 @@ const Expenses = (props)=>{
         setExpenseFilter(eventData);          
     }
 
-    const expensesList = filteredList.map( 
-        (expense, index)=>{
-            return(
-                <ExpenseItem          
-                    key={expense.id}
-                    title={expense.title}
-                    amount={expense.amount}
-                    date={expense.date}
-                ></ExpenseItem>
-            )
-      });
+    
 
     return(
         <div className="expenses">
             <ExpenseFilter onFilterChanged={filterChanged}/>
-            {
-                expensesList.length === 0 ? <p>No expenses found.</p> : expensesList
-            }            
+            <ExpenseList list={filteredList}></ExpenseList>       
         </div>
     );
 }
