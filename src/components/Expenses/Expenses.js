@@ -11,14 +11,18 @@ const Expenses = (props)=>{
     const [filteredList, setFilteredList] = useState([]);
     const [expenseFilter, setExpenseFilter] = useState('2022');
 
-    useEffect(()=>{
+    useEffect(()=>{       
         const templateList = expenseList.filter(
             (element)=>{
                 return element.date.getFullYear().toString() === expenseFilter.toString();
             }
         );
         setFilteredList(templateList);
-    }, [expenseFilter]);
+    }, [expenseFilter, expenseList]);
+
+    useEffect(() => {       
+        setExpenseList(props.list);
+    }, [props.list])
 
     const filterChanged = (eventData)=>{        
         setExpenseFilter(eventData);          

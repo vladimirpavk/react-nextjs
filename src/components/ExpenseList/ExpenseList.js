@@ -21,7 +21,7 @@ const ExpenseList = (props)=>{
     });     
  
     return(
-        <div className="expensesList">
+        <div>
             {expensesList}
         </div>        
     );

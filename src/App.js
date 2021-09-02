@@ -32,7 +32,6 @@ function App() {
   const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
 
   const valueChanged = (event)=>{
-    console.log('App.js', event);
     setExpenses(
       (prevState)=>{
         return [...prevState, {

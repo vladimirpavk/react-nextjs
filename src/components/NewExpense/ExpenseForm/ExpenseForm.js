@@ -5,9 +5,7 @@ import './ExpenseForm.css';
 const ExpenseForm = (props)=>{
 
     const formSubmitted = (formEvent)=>{
-        formEvent.preventDefault();        
-        
-        console.log(userInput);
+        formEvent.preventDefault();             
 
         props.onFormSubmit(userInput);
 
